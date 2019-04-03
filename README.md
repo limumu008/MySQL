@@ -56,21 +56,22 @@ SQL 代码规范
 - 字符串类：CHAR、VARCHAR、BINARY、VARBINAR、BLOB、TEXT、ENUM和SET。
 2. 用SQL语句创建表
 - 通用语法：CREATE TABLE table_name (column_name column_type);
--   语句解释
 -   设定列类型 、大小、约束
 -   设定主键
 3. 用SQL语句向表中添加数据
 - 通用语法： INSERT INTO table_name(field1, field2,... fieldN) VALUES (value1, value2,...valueN);
--   语句解释
 -   多种添加方式（指定列名；不指定列名）
 - 插入多条数据： INSERT INTO table_name(field1,field2,... fieldN) VALUES (valueA1, valueA2,...valueAN), (valueB1, valueB2,...valueBN),...;
 - 不指定列名：INSERT INTO table_name VALUES (id, value1,value2,...valueN); 按照列的顺序插入数据
 4. 用SQL语句删除表
--   语句解释
--   DELETE
--   DROP
--   TRUNCATE
--   不同方式的区别
+-   删除表内部分数据，用DELETE。 DELETE FROM table_name WHERE condition;
+-   删除表，用DROP，慎用。 DROP TABLE table_name;
+-   清除表内数据，保持表结构，用TRUNCATE。 TRUNCATE TABLE table_name;
+-   不同方式的区别： 
+- DROP，立即释放磁盘空间； 
+- TRUNCATE，保留表结构，立即释放磁盘空间；
+- DELETE FROM table_name, 也会删除表全部数据，表结构不变，对于MyISAM会立刻释放磁盘空间，InnoDB不会释放磁盘空间； 
+- DELETE FROM table_name WHERE condition, 表结构不变，不会释放磁盘空间。
 5. 用SQL语句修改表
 -   修改列名
 -   修改表中数据
