@@ -50,10 +50,15 @@ SQL 代码规范
 
 2.1-MySQL 基础 （二）- 表操作
 1. MySQL表数据类型
+- 数据分为三类： 数值、日期/时间和字符串。
+- 数值类： INTEGER、SMALLINT、DECIMAL、NUMERIC、FLOAT、REAL和DOUBLE PRECISION。
+- 日期/时间类：DATE、TIME、YEAR、DATETIME和TIMESTAMP。
+- 字符串类：CHAR、VARCHAR、BINARY、VARBINAR、BLOB、TEXT、ENUM和SET。
 2. 用SQL语句创建表
+- 通用语法：CREATE TABLE table_name (column_name column_type);
 -   语句解释
 -   设定列类型 、大小、约束
--   设定主键6
+-   设定主键
 3. 用SQL语句向表中添加数据
 -   语句解释
 -   多种添加方式（指定列名；不指定列名）
