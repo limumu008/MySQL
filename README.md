@@ -60,8 +60,11 @@ SQL 代码规范
 -   设定列类型 、大小、约束
 -   设定主键
 3. 用SQL语句向表中添加数据
+- 通用语法： INSERT INTO table_name(field1, field2,... fieldN) VALUES (value1, value2,...valueN);
 -   语句解释
 -   多种添加方式（指定列名；不指定列名）
+- 插入多条数据： INSERT INTO table_name(field1,field2,... fieldN) VALUES (valueA1, valueA2,...valueAN), (valueB1, valueB2,...valueBN),...;
+- 不指定列名：INSERT INTO table_name VALUES (id, value1,value2,...valueN); 按照列的顺序插入数据
 4. 用SQL语句删除表
 -   语句解释
 -   DELETE
