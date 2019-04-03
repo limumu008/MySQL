@@ -73,12 +73,12 @@ SQL 代码规范
 - DELETE FROM table_name, 也会删除表全部数据，表结构不变，对于MyISAM会立刻释放磁盘空间，InnoDB不会释放磁盘空间； 
 - DELETE FROM table_name WHERE condition, 表结构不变，不会释放磁盘空间。
 5. 用SQL语句修改表
--   修改列名
--   修改表中数据
--   删除行
--   删除列
--   新建列
--   新建行
+-   修改列名： ALTER TABLE table_name CHANGE column column_name new_column_name type;
+-   修改表中数据: 先删除再添加 ALTER TABLE table_name DROP i; ALTER TABLE table_name ADD i type;
+-   删除行：ALTER TABLE table_name DROP i;
+-   删除列: ALTER TABLE table_name DROP column_name;
+-   新建列: ALTER TABLE table_name ADD column_name type;
+-   新建行: ALTER TABLE table_name ADD 
 
 2.2 MySQL 基础 （三）- 表联结
 
