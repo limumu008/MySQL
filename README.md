@@ -82,10 +82,11 @@ SQL 代码规范
 
 2.2 MySQL 基础 （三）- 表联结
 
-- MySQL别名
-- INNER JOIN
-- LEFT JOIN
-- CROSS JOIN
-- 自连接
-- UNION
-- 以上几种方式的区别和联系
+- INNER JOIN: 获取两个表中字段匹配关系的记录。SELECT * FROM A INNER JOIN B ON A.ID = B.ID;
+- LEFT(RIGHT) JOIN： 获取左(右)表所有记录，即使右(左)表没有对应匹配的记录。SELECT * FROM A LEFT JOIN B ON A.ID = B.ID;
+- CROSS JOIN： 返回行的笛卡尔乘积。SELECT * FROM A CROSS JOIN B; 如果加入连接条件，和INNER JOIN就非常类似。
+SELECT * FROM A CROSS JOIN B WHERE A.ID = B.ID;
+- 自连接： 一个表进行自我链接。 SELECT * FROM A R1, A R2 WHERE R1.ID = R2.ID AND R1.NAME = R2.NAME;
+- UNION：连接两个以上的SELECT语句的结果组合到一个结果集合中，多个SELECT语句会删除重复的数据。 SELECT * FROM A UNION (ALL) SELECT * FROM B;
+如果加入ALL，就保留所有数据，包括重复的数据。
+
