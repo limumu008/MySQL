@@ -46,3 +46,28 @@ SQL 注释
 SQL 代码规范
 [SQL 编程格式的优化建议] https://zhuanlan.zhihu.com/p/27466166
 [SQL Style Guide]https://www.sqlstyle.guide/
+
+
+2.1-MySQL 基础 （二）- 表操作
+1. MySQL表数据类型
+2. 用SQL语句创建表
+-   语句解释
+-   设定列类型 、大小、约束
+-   设定主键6
+3. 用SQL语句向表中添加数据
+-   语句解释
+-   多种添加方式（指定列名；不指定列名）
+4. 用SQL语句删除表
+-   语句解释
+-   DELETE
+-   DROP
+-   TRUNCATE
+-   不同方式的区别
+5. 用SQL语句修改表
+-   修改列名
+-   修改表中数据
+-   删除行
+-   删除列
+-   新建列
+-   新建行
+
