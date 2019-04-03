@@ -71,3 +71,12 @@ SQL 代码规范
 -   新建列
 -   新建行
 
+2.2 MySQL 基础 （三）- 表联结
+
+- MySQL别名
+- INNER JOIN
+- LEFT JOIN
+- CROSS JOIN
+- 自连接
+- UNION
+- 以上几种方式的区别和联系
