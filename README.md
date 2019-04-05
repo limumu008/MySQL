@@ -90,3 +90,8 @@ SELECT * FROM A CROSS JOIN B WHERE A.ID = B.ID;
 - UNION：连接两个以上的SELECT语句的结果组合到一个结果集合中，多个SELECT语句会删除重复的数据。 SELECT * FROM A UNION (ALL) SELECT * FROM B;
 如果加入ALL，就保留所有数据，包括重复的数据。
 
+3.1 MySQL 实战
+
+- 数据导入导出
+- 以CSV格式，导出MySQL表。
+- 将CSV表导入数据库
