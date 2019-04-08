@@ -183,13 +183,71 @@ INSERT INTO Users (Users_Id,Banned,Role)
                 (13,'No','driver');
 
 --Get the cancellation rate for unbanned user between 2013-10-01 and 2013-10-03, keep 2 decimals.
-SELECT Distinct Request_at AS Day, (
-    SELECT COUNT(Status) As C1, Request_at FROM Trips WHERE ClientId in (
+SELECT T2.Request_at AS 'Day', IFNULL(ROUND((C1/C2),2),0) AS 'Cancellation Rate'
+FROM (SELECT COUNT(Status) As C1, Request_at FROM Trips WHERE ClientId in (
     SELECT Users_Id FROM Users WHERE Banned='No') AND Status <> 'completed'
-    GROUP BY Request_at)/(
-        SELECT COUNT(Id) FROM Trips WHERE ClientId in (
+    GROUP BY Request_at) as T1 RIGHT JOIN
+    (SELECT COUNT(Id) As C2, Request_at FROM Trips WHERE ClientId in (
         SELECT Users_Id FROM Users WHERE Banned='No')
-        GROUP BY Request_at        
-    ) AS 'Cancellation Rate'
-FROM Trips
-ORDER BY Request_at;
+        GROUP BY Request_at) as T2
+    ON T1.Request_at = T2.Request_at;
+
+/*
++------------+-------------------+
+|     Day    | Cancellation Rate |
++------------+-------------------+
+| 2013-10-01 |       0.33        |
+| 2013-10-02 |       0.00        |
+| 2013-10-03 |       0.50        |
++------------+-------------------+
+*/
+
+--Project 11
+--Clear the employee table in project 7, reinsert some data.
+DELETE FROM employee;
+INSERT INTO employee (Id, Name, Salary, DepartmentId) 
+    VALUES (1,'Joe',70000,1),(2,'Henry',80000,2),
+    (3,'Sam',60000,2),(4,'Max',90000,1),
+    (5,'Janet',69000,1),(6,'Randy',85000,1);
+
+--Find top three employees with highest salary for each department.
+SELECT D.Name AS Department, E.Name AS Employee, Salary
+FROM employee E
+INNER JOIN department D
+ON D.Id = E.DepartmentId
+WHERE (
+    SELECT COUNT(DISTINCT salary)
+    FROM employee
+    WHERE salary > e.salary AND departmentId = E.DepartmentId
+) < 3
+ORDER BY E.departmentId, Salary DESC;
+/*
++------------+----------+--------+
+| Department | Employee | Salary |
++------------+---- ------+--------+
+| IT         | Max      | 90000  |
+| IT         | Randy    | 85000  |
+| IT         | Joe      | 70000  |
+| Sales      | Henry    | 80000  |
+| Sales      | Sam      | 60000  |
++------------+----------+--------+
+*/
+
+--Project 12
+--Rank the score in the scores table with uncontinues order.
+SELECT Score, (SELECT COUNT(Score)+1 FROM scores WHERE Score > s.Score) AS 'Rank'
+FROM scores
+ORDER BY score DESC;
+
+/*
++-------+------+
+| Score | Rank |
++-------+------+
+| 4.00  | 1    |
+| 4.00  | 1    |
+| 3.85  | 3    |
+| 3.65  | 4    |
+| 3.65  | 4    |
+| 3.50  | 6    |
++-------+------
+*/
